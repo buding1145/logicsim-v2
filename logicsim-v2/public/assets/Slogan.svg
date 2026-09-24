@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="166.08049mm"
+   height="87.898323mm"
+   viewBox="0 0 166.08049 87.898323"
+   version="1.1"
+   id="svg839"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="文字.svg">
+  <defs
+     id="defs833" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="305.71426"
+     inkscape:cy="173.49601"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:snap-text-baseline="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata836">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-24.946434,-102.26251)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:24.3589px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.609933;stroke-miterlimit:4;stroke-dasharray:none"
+       x="25.558525"
+       y="120.21167"
+       id="text1404"
+       transform="scale(0.97605141,1.0245362)"><tspan
+         sodipodi:role="line"
+         id="tspan1402"
+         x="25.558525"
+         y="120.21167"
+         style="stroke-width:0.609933;stroke-miterlimit:4;stroke-dasharray:none">       庆  祝</tspan><tspan
+         sodipodi:role="line"
+         x="25.558525"
+         y="151.27379"
+         style="stroke-width:0.609933;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan1406">中国共产党建党</tspan><tspan
+         sodipodi:role="line"
+         x="25.558525"
+         y="182.33591"
+         style="stroke-width:0.609933;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan1408">     100 周年</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="72.571426"
+       y="104.32143"
+       id="text1412"><tspan
+         sodipodi:role="line"
+         id="tspan1410"
+         x="72.571426"
+         y="104.32143"
+         style="stroke-width:0.264583">     </tspan></text>
+  </g>
+</svg>

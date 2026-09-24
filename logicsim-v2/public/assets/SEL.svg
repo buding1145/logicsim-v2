@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="50mm"
+   height="70mm"
+   viewBox="0 0 50 70"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="SEL.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="186.46677"
+     inkscape:cy="118.50219"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:lockguides="false"
+     showguides="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50,-1)">
+    <rect
+       style="fill:none;stroke-width:0.600001;stroke-opacity:0.5"
+       id="rect833"
+       width="56.69643"
+       height="12.095239"
+       x="72.571426"
+       y="83.910713" />
+    <rect
+       style="fill:#00f3ff;stroke-width:0.690045;stroke-opacity:0.5;fill-opacity:1"
+       id="rect837-8"
+       width="50"
+       height="10"
+       x="-100"
+       y="1"
+       transform="scale(-1,1)" />
+    <rect
+       style="fill:#000000;stroke-width:0.690044;stroke-opacity:0.5;fill-opacity:1"
+       id="rect837-8-1"
+       width="50"
+       height="10"
+       x="-100"
+       y="31"
+       transform="scale(-1,1)" />
+    <rect
+       style="fill:#000000;stroke-width:0.690044;stroke-opacity:0.5;fill-opacity:1"
+       id="rect837-8-1-1"
+       width="50"
+       height="10"
+       x="-100"
+       y="61"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:#00f3ff;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 50,30.999998 V 41 l 50,19.999999 V 71 L 50,30.999998"
+       id="path973" />
+    <path
+       style="fill:#00f3ff;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 50,60.999999 V 71 L 100,30.999998 V 41 L 50,60.999999"
+       id="path975" />
+    <path
+       style="fill:none;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 59.999998,11 C 64.278321,10.891233 89.999999,1 89.999999,1 H 100 L 50,11"
+       id="path1015" />
+    <path
+       style="fill:#060404;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="M 50,6 75,1 100,6 75,11 Z"
+       id="path1057" />
+  </g>
+</svg>

@@ -1,0 +1,463 @@
+/* ============================================================
+   LogicSim ∀∃ — 2026 改造版样式
+   说明：保留原版布局几何参数（header 150px / 右栏 300px /
+   底栏 150px），因为 ViewGen.js 的缩放与小地图逻辑依赖它们；
+   视觉层全面升级为现代化卡片式设计。
+   ============================================================ */
+
+@font-face {
+    font-family: 'TsangerYuYangT03';
+    src: url('./lib/TsangerYuYangT-W03.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --indigo: #4f46e5;
+    --indigo-dark: #4338ca;
+    --violet: #7c3aed;
+    --green: #059669;
+    --blue: #0284c7;
+    --amber: #d97706;
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text-dim: #64748b;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(15, 23, 42, .08), 0 4px 14px rgba(15, 23, 42, .06);
+}
+
+html, body, .joint-app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    user-select: none;
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", TsangerYuYangT03, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    overflow: hidden;
+    display: block;
+}
+
+/* ---------- 顶栏（几何参数与原版一致：150px 高） ---------- */
+.app-header {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #312e81 0%, #4f46e5 60%, #7c3aed 100%);
+    box-shadow: var(--shadow);
+    z-index: 20;
+}
+
+.app-body {
+    position: relative;
+    height: calc(100% - 150px);
+}
+
+/* ---------- 小地图（300x150，ViewGen.js 依赖） ---------- */
+.mini-map {
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    padding: 0;
+    position: relative;
+}
+
+.brand {
+    position: absolute;
+    left: 10px;
+    bottom: 6px;
+    z-index: 30;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .5px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+    pointer-events: none;
+}
+
+.brand-accent {
+    color: #fbbf24;
+}
+
+#mini-resize {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    cursor: nwse-resize;
+    margin: 0 -7px -7px 0;
+    border-radius: 50%;
+    border: 2px solid #31d0c6;
+    background-color: #fff;
+}
+
+/* ---------- 工具栏容器 ---------- */
+.title-container {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    left: 300px;
+    right: 0;
+    box-sizing: border-box;
+    z-index: 10;
+    overflow: hidden;
+    padding: 8px 10px;
+    display: flex;
+    gap: 12px;
+}
+
+.col-left {
+    width: 34%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.col-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.toolbar-row {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+}
+
+/* ---------- 现代化按钮 ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .18);
+}
+
+.btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn img { filter: invert(1); }
+
+.btn-green  { background: var(--green); }
+.btn-blue   { background: var(--blue); }
+.btn-amber  { background: var(--amber); }
+.btn-violet { background: var(--violet); }
+.btn-grow   { flex: 1; }
+.btn-block  { width: 100%; }
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* ---------- 输入控件 ---------- */
+.filename-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid rgba(255, 255, 255, .35);
+    background: rgba(255, 255, 255, .14);
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#ReversePol {
+    flex: 1;
+    width: 100%;
+    min-height: 52px;
+    resize: none;
+    border: 1px solid rgba(255, 255, 255, .35);
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#ReversePol::placeholder { color: rgba(255, 255, 255, .55); }
+#ReversePol:focus { outline: 2px solid #fbbf24; background: rgba(255, 255, 255, .2); }
+
+#myModel {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    border: 1px solid rgba(255, 255, 255, .35);
+    background: rgba(15, 23, 42, .35);
+    color: #a5f3fc;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+/* ---------- 主画布区域（几何参数与原版一致） ---------- */
+.left-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--bg);
+    z-index: 10;
+}
+
+.main-container {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 306px;
+    bottom: 150px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: var(--shadow);
+}
+
+#app-resize {
+    position: absolute;
+    top: 0;
+    width: 6px;
+    right: 300px;
+    bottom: 150px;
+    background-color: transparent;
+    cursor: ew-resize;
+}
+
+#app-resize:hover { background-color: rgba(79, 70, 229, .25); }
+
+.resize-arrow {
+    position: absolute;
+    left: -35px;
+    background-image: url(assets/box-arrow-in-right.svg);
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 1px 2px rgba(15, 23, 42, .3));
+}
+
+/* ---------- 右侧面板（300px，ViewGen.js 依赖） ---------- */
+.right-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    bottom: 150px;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: var(--bg);
+    padding: 8px;
+}
+
+.panel-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.panel-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--indigo-dark);
+}
+
+.field-row { margin-bottom: 6px; }
+.field-label { color: var(--text-dim); padding-top: 4px; }
+
+.field-row input, .field-row textarea {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.field-row input:focus, .field-row textarea:focus {
+    outline: 2px solid var(--indigo);
+    border-color: transparent;
+}
+
+/* 运算符速查表 */
+.op-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+}
+
+.op-table td {
+    padding: 4px 6px;
+    border-bottom: 1px dashed var(--border);
+}
+
+.op-table tr:last-child td { border-bottom: none; }
+
+.op-sym {
+    font-family: Consolas, monospace;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--indigo);
+    text-align: center;
+    width: 26px;
+}
+
+.op-table code {
+    background: #eef2ff;
+    color: var(--indigo-dark);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "Cascadia Code", Consolas, monospace;
+}
+
+.op-new { background: #fefce8; }
+
+.badge-new {
+    background: var(--amber);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 4px;
+    vertical-align: 1px;
+}
+
+.panel-tip {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+/* 示例快捷按钮 */
+.chip {
+    display: inline-block;
+    margin: 3px 4px 3px 0;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    color: var(--text);
+    cursor: pointer;
+    transition: all .12s ease;
+}
+
+.chip:hover {
+    background: var(--indigo);
+    border-color: var(--indigo);
+    color: #fff;
+}
+
+.chip-new {
+    border-color: #fcd34d;
+    background: #fffbeb;
+}
+
+.chip-new:hover {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: #fff;
+}
+
+.steps {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-dim);
+    line-height: 1.9;
+    font-size: 12.5px;
+}
+
+/* ---------- 底栏：状态 + 真值表（150px，ViewGen.js 依赖） ---------- */
+.bottom-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 10px;
+    height: 150px;
+    background-color: var(--card);
+    border-top: 1px solid var(--border);
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 4px 12px;
+    overflow: hidden;
+}
+
+#status {
+    margin: 4px 0;
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+#truthTable {
+    height: 108px;
+    overflow: auto;
+    font-size: 12.5px;
+}
+
+#truthTable table {
+    border-collapse: collapse;
+    font-family: "Cascadia Code", Consolas, monospace;
+}
+
+#truthTable th, #truthTable td {
+    border: 1px solid var(--border);
+    padding: 2px 12px;
+    text-align: center;
+}
+
+#truthTable th {
+    background: var(--indigo);
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+#truthTable td.out-1 { background: #dcfce7; color: #166534; font-weight: 700; }
+#truthTable td.out-0 { background: #fee2e2; color: #991b1b; }
+
+#truthTable .truth-note {
+    color: var(--text-dim);
+    padding: 6px 2px;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LogicSim ∀∃ · 逻辑表达式仿真（2026 改造版）</title>
+    <link rel="stylesheet" type="text/css" href="lib/joint.css" />
+    <link href="lib/select2.min.css" rel="stylesheet" />
+    <link href="lib/w3.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!-- dependencies -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/lodash.min.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/graphlib.min.js"></script>
+    <script src="lib/dagre.min.js"></script>
+    <script src="lib/joint.js"></script>
+    <script src="lib/select2.min.js"></script>
+    <script src="LogicParser.js"></script>
+</head>
+
+<body>
+    <!-- content -->
+    <div class="joint-app">
+        <div class="app-header">
+            <div class="mini-map">
+                <div id="mini-paper"></div>
+                <div id="mini-view">
+                    <div id="mini-resize"></div>
+                </div>
+                <div class="brand">LogicSim <span class="brand-accent">∀∃</span></div>
+            </div>
+            <div class="title-container">
+                <div class="col-left">
+                    <div class="toolbar-row">
+                        <label class="btn btn-green btn-file">
+                            <img src="assets/icons/save2.svg" width="15" height="15" />
+                            <span>载入文本</span>
+                            <input type="file" id="fileToLoad" />
+                        </label>
+                        <button class="btn btn-blue" onclick="app.saveTextAsFile()">
+                            <img src="assets/icons/upload.svg" width="15" height="15" />保存文本</button>
+                        <input class="filename-input" id="inputFileNameToSaveAs" value="默认保存名称" />
+                    </div>
+
+                    <textarea id="ReversePol" placeholder="在此输入逆波兰逻辑表达式，例如：a b , a ∀"></textarea>
+
+                    <div class="toolbar-row">
+                        <button class="btn btn-amber btn-grow" onclick="app.parseLogic()">解析文本</button>
+                        <button class="btn btn-violet btn-grow" onclick="app.showTruth()">生成真值表</button>
+                    </div>
+                </div>
+                <div class="col-right">
+                    <textarea id="myModel" spellcheck="false">
+                        {
+                            nodeArray: [],
+                            linkArray: []
+                        }
+                    </textarea>
+                    <div class="toolbar-row">
+                        <button id="LoadButton" class="btn btn-green btn-grow" onclick="app.load()">
+                            <img src="assets/icons/save2.svg" width="15" height="15" />文本转图</button>
+                        <button id="SaveButton" class="btn btn-blue btn-grow" onclick="app.save()">
+                            <img src="assets/icons/upload.svg" width="15" height="15" />图转文本</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-body">
+            <div class="left-container">
+
+            </div>
+            <div class="main-container">
+                <div id="paper-container">
+                    <div id="paper" style="cursor:grab">
+                    </div>
+                </div>
+            </div>
+            <div id="app-resize">
+                <div class="resize-arrow" onclick="app.ResizeBlock()">
+
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="panel-card">
+                    <div class="panel-title">✏️ 元素编辑</div>
+                    <div class="w3-row field-row">
+                        <div class="w3-third field-label">元素名称：</div>
+                        <input class="w3-twothird" type="text" id="ERName" />
+                    </div>
+                    <div class="w3-row field-row">
+                        <div class="w3-third field-label">元素备注：</div>
+                        <textarea class="w3-twothird" id="ERMemo"></textarea>
+                    </div>
+                    <button id="ERSetName" class="btn btn-amber btn-block" onclick="app.ChangeName()">保存修改</button>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-title">📖 运算符速查（逆波兰式）</div>
+                    <table class="op-table">
+                        <tr><td class="op-sym">.</td><td><code>a b .</code></td><td>逻辑与 a∧b</td></tr>
+                        <tr><td class="op-sym">,</td><td><code>a b ,</code></td><td>逻辑或 a∨b</td></tr>
+                        <tr><td class="op-sym">&lt;</td><td><code>a &lt;</code></td><td>逻辑非 ¬a</td></tr>
+                        <tr><td class="op-sym">&gt;</td><td><code>a b &gt;</code></td><td>逻辑推出 a→b</td></tr>
+                        <tr><td class="op-sym">=</td><td><code>a b =</code></td><td>逻辑等价 a↔b</td></tr>
+                        <tr class="op-new"><td class="op-sym">∀</td><td><code>F x ∀</code></td><td>全称量词 ∀x.F <span class="badge-new">NEW</span></td></tr>
+                        <tr class="op-new"><td class="op-sym">∃</td><td><code>F x ∃</code></td><td>存在量词 ∃x.F <span class="badge-new">NEW</span></td></tr>
+                    </table>
+                    <div class="panel-tip">
+                        量词按“公式 变量 量词”顺序书写：∀x.F 会消去变量 x，
+                        语义为 F[x:=0] ∧ F[x:=1]；∃x.F 语义为 F[x:=0] ∨ F[x:=1]。
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-title">⚡ 示例（点击即运行）</div>
+                    <button class="chip" onclick="app.loadExample('a b . fe >')">a∧b → fe</button>
+                    <button class="chip" onclick="app.loadExample('a b . fe ge > =')">(a∧b) ↔ (fe→ge)</button>
+                    <button class="chip chip-new" onclick="app.loadExample('a a < , a ∀')">∀a(a∨¬a) 排中律</button>
+                    <button class="chip chip-new" onclick="app.loadExample('a a < . a ∃')">∃a(a∧¬a) 矛盾律</button>
+                    <button class="chip chip-new" onclick="app.loadExample('a b , a ∀')">∀a(a∨b) ≡ b</button>
+                    <button class="chip chip-new" onclick="app.loadExample('x y = y ∃ x ∀')">∀x∃y(x↔y)</button>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-title">🧭 使用步骤</div>
+                    <ol class="steps">
+                        <li>在上方文本框输入“逆波兰逻辑表达式”</li>
+                        <li>点击“解析文本”转换为 JSON 图模型</li>
+                        <li>点击“文本转图”得到正规图形表示</li>
+                        <li>点击“生成真值表”查看全部赋值结果</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="bottom-container">
+                <p id="status">Diagram Model loaded from Json Format.</p>
+                <div id="truthTable"></div>
+            </div>
+        </div>
+    </div>
+    <script src="ViewGen.js">
+    </script>
+</body>
+
+</html>

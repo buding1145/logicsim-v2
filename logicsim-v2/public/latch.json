@@ -1,0 +1,8 @@
+{
+    
+    "nodeArray":[{"key":"0","type":"0","name":"Zero"},{"key":1,"type":"1","name":"One"},{"key":2,"type":"Export","name":"Out"},{"key":"a","type":"Import","name":"保持1载入0"},{"key":"b","type":"Import","name":"载入位"},{"key":3,"type":"SEL"},{"key":4, "type":"SEL"}],
+
+    
+    "linkArray":[{"from":3,"frompid":"SO","to":2,"topid":"OUT"},{"from":"a","frompid":"OUT","to":4,"topid":"SI"},{"from":"b","frompid":"OUT","to":4,"topid":"0"},{"from":1,"frompid":"OUT","to":3,"topid":"1"},{"from":"0","frompid":"OUT","to":3,"topid":"0"},{"from":4,"frompid":"N","to":3,"topid":"SI"},{"from":3,"frompid":"N","to":4,"topid":"1"}]
+
+}
